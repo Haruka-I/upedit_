@@ -27,8 +27,8 @@ public class AdjustmentMainActivity extends Activity {
 
 
 
-        final int R_IMAGE = 1;
-        Uri    source;
+        final int S_IMAGE = 1;
+        Uri    resource;
         Bitmap bitmapMas;
 
 
@@ -52,10 +52,10 @@ public class AdjustmentMainActivity extends Activity {
                             Intent.ACTION_PICK,
                             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     //とった画像をR_IMAGEとする
-                    startActivityForResult(intent, R_IMAGE);
+                    startActivityForResult(intent, S_IMAGE);
                 }
             });
-          //シークバーのIDと
+          //シークバーのID
             hBar = (SeekBar) findViewById(R.id.hbar);
             sBar = (SeekBar) findViewById(R.id.sbar);
             vBar = (SeekBar) findViewById(R.id.vbar);
@@ -87,13 +87,14 @@ public class AdjustmentMainActivity extends Activity {
             super.onActivityResult ( requestCode , resultCode , data );
        //リクエストOKだったそして、R_IMAGE を取れたら
             if ( resultCode == RESULT_OK ) {
-                if ( requestCode == R_IMAGE ) {
-                    source = data.getData ( );
+                if ( requestCode == S_IMAGE ) {
+                    //
+                    resource = data.getData ( );
                     //とったデータ
                     try {
                         bitmapMas = BitmapFactory
                                 .decodeStream ( getContentResolver ( ).openInputStream (
-                                        source ) );
+                                        resource ) );
 
                         // reset SeekBars
                         hBar.setProgress ( 250 );
@@ -109,7 +110,7 @@ public class AdjustmentMainActivity extends Activity {
         }
 
 
-        //
+        //シークバーのリスト
         SeekBar.OnSeekBarChangeListener seekBarChangeListener = new SeekBar.OnSeekBarChangeListener () {
 
             @Override
@@ -132,13 +133,13 @@ public class AdjustmentMainActivity extends Activity {
 
         private void loadBitmapHSV() {
             if (bitmapMas != null) {
-
+                  //
                 int progressHue = hBar.getProgress() - 250;
                 int progressSat = sBar.getProgress() - 250;
                 int progressVal = vBar.getProgress() - 250;
 
 
-                float h = (float) progressHue * 365 / 250;
+                float h = (float) progressHue * 120/ 250;
                 float s = (float) progressSat / 250;
                 float v = (float) progressVal / 250;
 
