@@ -25,8 +25,9 @@ public class AdjustmentMainActivity extends Activity {
         TextView hueText, satText, valText;
         Button btnResetHSV;
 
-        final int R_IMAGE = 1;
 
+
+        final int R_IMAGE = 1;
         Uri    source;
         Bitmap bitmapMas;
 
@@ -54,13 +55,16 @@ public class AdjustmentMainActivity extends Activity {
                     startActivityForResult(intent, R_IMAGE);
                 }
             });
-
+          //シークバーのIDと
             hBar = (SeekBar) findViewById(R.id.hbar);
             sBar = (SeekBar) findViewById(R.id.sbar);
             vBar = (SeekBar) findViewById(R.id.vbar);
+
+            //
             hueText = (TextView) findViewById(R.id.texth);
             satText = (TextView) findViewById(R.id.texts);
             valText = (TextView) findViewById(R.id.textv);
+
             hBar.setOnSeekBarChangeListener(seekBarChangeListener);
             sBar.setOnSeekBarChangeListener(seekBarChangeListener);
             vBar.setOnSeekBarChangeListener(seekBarChangeListener);
@@ -81,7 +85,7 @@ public class AdjustmentMainActivity extends Activity {
         @Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult ( requestCode , resultCode , data );
-//リクエストOKだったそして、R_IMAGE1 を取れたら
+       //リクエストOKだったそして、R_IMAGE を取れたら
             if ( resultCode == RESULT_OK ) {
                 if ( requestCode == R_IMAGE ) {
                     source = data.getData ( );

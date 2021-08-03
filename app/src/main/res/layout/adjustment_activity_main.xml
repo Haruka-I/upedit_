@@ -69,7 +69,7 @@
     <Button
         android:id="@+id/resebthsv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="59dp"
         android:background="#1EF8CB"
         android:backgroundTintMode="add"
         android:scrollbarThumbHorizontal="@drawable/paint_button_background"
