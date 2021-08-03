@@ -1,0 +1,2 @@
+rootProject.name = "upedit"
+include ':app'
